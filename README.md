@@ -53,5 +53,10 @@ silent defaults.
 
 ## License
 
-BSD-3-Clause. `machine/` retains AMD/Mentor copyright headers from the
-upstream OpenAMP application sources it derives from.
+Monutchee-owned code is available under **GPL-3.0-only or a separately agreed
+commercial license**, subject to existing third-party notices. See
+[LICENSE](LICENSE), [LICENSING.md](LICENSING.md), and
+[COMMERCIAL.md](COMMERCIAL.md).
+
+The upstream-derived platform code in `machine/zynqmp_r5/` remains
+BSD-3-Clause; its original copyright and license notices are preserved.
