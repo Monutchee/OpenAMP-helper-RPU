@@ -45,6 +45,13 @@ the BSP's `XPAR_XIPIPSU_0_*` macros when not explicitly overridden.
 A missing channel config **fails the build** (`#error`) — there are no
 silent defaults.
 
+For Vitis 2026.1 BSPs, also link `metal_xlnx_extension` and define
+`MNC_LIBMETAL_XLNX_EXTENSION`. The ZynqMP port then registers the extension's
+controller and dispatches IPI interrupts through it. Older BSPs use libmetal's
+existing Xilinx IRQ functions with no additional definition. Select this from
+the BSP library's presence, rather than a hardcoded installation version.
+Run `bash tests/zynqmp_irq/run.sh` to check both IRQ paths.
+
 ## Consumers
 
 - Vitis (Empty-app cmake): list the sources and include dirs in

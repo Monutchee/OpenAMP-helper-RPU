@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <metal/irq.h>
 #include <metal/sys.h>
+#include "irq_adapter.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "platform_info.h"
@@ -32,7 +33,7 @@
 static int app_gic_initialize(void)
 {
 	xPortInstallInterruptHandler(IPI_IRQ_VECT_ID,
-				     (Xil_ExceptionHandler)metal_xlnx_irq_isr,
+				     (Xil_ExceptionHandler)app_metal_irq_isr,
 				     (void *)IPI_IRQ_VECT_ID);
 	return 0;
 }
@@ -94,9 +95,9 @@ int init_system(void)
 	metal_init(&metal_param);
 	app_gic_initialize();
 
-	ret = metal_xlnx_irq_init();
+	ret = app_metal_irq_init();
 	if (ret)
-		ML_ERR("metal_xlnx_irq_init failed.\r\n");
+		ML_ERR("OpenAMP IRQ controller initialization failed.\r\n");
 
 	return ret;
 }
